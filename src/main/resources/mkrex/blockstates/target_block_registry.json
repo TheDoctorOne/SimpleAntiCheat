@@ -1,0 +1,5 @@
+{
+      "variants": {
+        "normal": { "model": "<Reference.MOD_ID>:<TargetBlock.UNLOCALIZED_NAME>" }
+      }
+  }

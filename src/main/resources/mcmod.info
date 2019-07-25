@@ -1,0 +1,16 @@
+[
+{
+  "modid": "mkrex",
+  "name": "Real Extras by MK",
+  "description": "For Real",
+  "version": "1.0",
+  "mcversion": "1.12.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Real Extra Mahmut"],
+  "credits": "Me",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

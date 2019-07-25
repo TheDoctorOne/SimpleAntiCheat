@@ -1,0 +1,9 @@
+"parent": "block/cube",
+    "textures": {
+        "down": "<Reference.MOD_ID>:blocks/<target>",
+        "up": "<Reference.MOD_ID>:blocks/<target>",
+        "north": "<Reference.MOD_ID>:blocks/<target>",
+        "east": "<Reference.MOD_ID>:blocks/<target>",
+        "south": "<Reference.MOD_ID>:blocks/<target>",
+        "west": "<Reference.MOD_ID>:blocks/<target>",
+    }
