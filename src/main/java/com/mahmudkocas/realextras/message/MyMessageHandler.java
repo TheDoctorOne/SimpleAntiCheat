@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import com.mahmudkocas.realextras.Main;
 import com.mahmudkocas.realextras.events.ClientSideJoin;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -28,6 +29,8 @@ public class MyMessageHandler implements IMessageHandler<MyMessage, IMessage> {
 	}
 	@Override 
 	public IMessage onMessage(MyMessage message, MessageContext ctx) {
+		if(Minecraft.getMinecraft().isSingleplayer())
+			return null;
 		if(Main.SIDE == Side.SERVER) {
 				ctx.getServerHandler().player.getServerWorld().addScheduledTask(()-> {
 					if(Main.SHOULD_KICK)

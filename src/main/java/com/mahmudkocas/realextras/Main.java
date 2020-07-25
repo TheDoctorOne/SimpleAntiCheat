@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.logging.Logger;
 
 import com.mahmudkocas.realextras.events.ClientSideJoin;
 import com.mahmudkocas.realextras.events.RegisterItem;
@@ -42,7 +43,7 @@ public class Main {
 	public static boolean SHOULD_KICK = true;
 	public static int CLOSE_INV_FOR_HOW_LONG_IN_TICKS = 200;
 	public static String KICK_MESSAGE = "Seems like you installed a mod. In order to enter server, remove the mod you installed.";
-	public static String ABSOLUTE_MOD_LIST = "@1.12.2@Aroma1997Core-1.12.2-2.0.0.2.jar@Aroma1997s-Dimensional-World-1.12.2-2.0.0.2.jar@AutoRegLib-1.3-31.jar@BetterBuildersWands-1.12.2-0.13.2.271+5997513.jar@BiblioCraft[v2.4.5][MC1.12.2].jar@CTM-MC1.12.2-0.3.3.22.jar@ChineseWorkshop-1.12.2_1.2.6.jar@Chisel-MC1.12.2-0.2.1.35.jar@ClientTweaks_1.12.2-3.1.11.jar@CodeChickenLib-1.12.2-3.2.2.353-universal.jar@Controlling-3.0.7.jar@CosmeticArmorReworked-1.12.2-v4a.jar@CraftPresence-1.12.2-1.5.5.jar@CraftTweaker2-1.12-4.1.19.jar@CraftingTweaks_1.12.2-8.1.9.jar@CustomMainMenu-MC1.12.2-2.0.9.jar@FTBLib-5.4.3.127.jar@FTBUtilities-5.4.0.100.jar@FTBUtilitiesBackups-1.0.0.4.jar@FastLeafDecay-v14.jar@FenceOverhaul-1.3.4.jar@Forgelin-1.8.3.jar@InitialInventory-3.0.0.jar@InventoryTweaks-1.63.jar@JEROreIntegration-1.12.2-1.1.0.jar@JustEnoughResources-1.12.2-0.9.2.60.jar@MCMultiPart-2.5.3.jar@MTLib-3.0.6.jar@MouseTweaks-2.10-mc1.12.2.jar@NaturesCompass-1.12.2-1.5.1.jar@OfflineSkins-1.12.2-v5g.jar@OpenBlocks-1.12.2-1.8.1.jar@OpenModsLib-1.12.2-0.12.2.jar@PixelExtras-1.12.2-2.5.0-universal.jar@PixelOnExtras-0.1.jar@Pixelmon-1.12.2-7.0.6-universal.jar@Quark-r1.5-167.jar@ResourceLoader-MC1.12.1-1.5.3.jar@SilentLib-1.12.2-3.0.13+167.jar@SilentsGems-1.12.2-2.8.18+322.jar@WonderTrade-1.12.2-4.6.2-universal.jar@apritree-1.12.2-2.0.5.jar@blockcraftery-1.12.2-1.3.1.jar@bonsaitrees-1.1.3-b156.jar@chiselsandbits-14.33.jar@flatcoloredblocks-mc1.12-6.8.jar@furnus-1.12.2-2.1.8.jar@hexlands-1.9.0.jar@jei_1.12.2-4.15.0.268.jar@journeymap-1.12.2-5.5.4.jar@limelib-1.12.2-1.7.12.jar@lumberjack-1.4.1.jar@malisisblocks-1.12.2-6.1.0.jar@malisiscore-1.12.2-6.5.1.jar@malisisdoors-1.12.2-7.3.0.jar@malisisswitches-1.12.2-5.1.0.jar@mysticallib-1.12.2-1.3.1.jar@randompatches-1.12.2-1.17.2.0.jar@refinedstorage-1.6.14.jar@stackable-1.12.2-1.3.3.jar@theoneprobe-1.12-1.4.28.jar@worleycaves-1.4.1.jar@";
+	public static String ABSOLUTE_MOD_LIST = "@AdLods-1.12.2-1.0.8.0-build.0504.jar@BetterBuildersWands-1.12-0.11.1.245+69d0d70.jar@BetterFps-1.4.8.jar@bonsaitrees-1.1.4-b170.jar@Chisel-MC1.12.2-1.0.2.45.jar@CraftPresence-1.12.2-1.6.5.jar@CTM-MC1.12.2-1.0.2.31.jar@CustomMainMenu-MC1.12.2-2.0.9.jar@ForgeEndertech-1.12.2-4.5.3.0-build.0528.jar@FTBLib-5.4.7.2.jar@FTBQuests-1.9.0.10.jar@FTBUtilities-5.4.1.130.jar@hexlands-1.9.0.jar@InventoryTweaks-1.63.jar@ItemFilters-1.0.4.2.jar@jei_1.12.2-4.15.0.296.jar@MouseTweaks-2.10-mc1.12.2.jar@OreExcavation-1.4.150.jar@PixelExtras-1.12.2-2.5.7-universal.jar@Pixelmon-1.12.2-8.0.2-universal.jar@PixelOnExtras-0.1.jar@ProjectE-1.12.2-PE1.4.1.jar@ResourceLoader-MC1.12.1-1.5.3.jar@SilentLib-1.12.2-3.0.14+168.jar@SilentsGems-1.12.2-2.8.22+327.jar@WonderTrade-1.12.2-4.6.2-universal.jar@";
 	public static ArrayList<String> ALLOWED_PLAYERS = new ArrayList<>();
 	
 	public static final SimpleNetworkWrapper network = NetworkRegistry.INSTANCE.newSimpleChannel("mkrex");
@@ -60,8 +61,7 @@ public class Main {
 	public static void PreInit(FMLPreInitializationEvent event) {
 		SIDE = event.getSide();
 		
-		ALLOWED_PLAYERS.add("MahmudKocas");
-		ALLOWED_PLAYERS.add("chocopufs");
+		//ALLOWED_PLAYERS.add("TheDoctorOne");
 	}
 	
 	@EventHandler
@@ -125,7 +125,10 @@ public class Main {
 								ALLOWED_PLAYERS.add(string);
 							}
 						}else if(temp.toLowerCase().contains("ABSOLUTE_MOD_LIST")) {
-							ABSOLUTE_MOD_LIST = temp.split("=")[1];
+							try {
+								ABSOLUTE_MOD_LIST = temp.split("=")[1];
+							} catch (NullPointerException e) {}
+							Logger.getLogger("PixelOnExtras").info(ABSOLUTE_MOD_LIST);
 							if(ABSOLUTE_MOD_LIST == null) {
 								System.out.println("MOD LIST NOT FOUND PLAYERS WILL NOT BE KICKED!!!!");
 								SHOULD_KICK = false;
@@ -162,14 +165,16 @@ public class Main {
 		ArrayList<String> fileNames = new ArrayList<>();
 		for(File f : files)
 			fileNames.add(f.getName() + "&" + new SimpleDateFormat("MM:dd:yyyy-HH:mm:ss").format(f.lastModified()));
+			//fileNames.add(f.getName());
 		Collections.sort(fileNames);
 		String completeList = "";
 		completeList += "&" + fileNames.size() + " Mods @";
 		for(String string : fileNames) {
 			completeList += string + "@";
 		}
-		FILE_LIST_STRING = completeList;		
-		//System.out.println(completeList);
+		FILE_LIST_STRING = completeList;
+		System.out.println("MOD LIST: " + completeList);
+		Logger.getLogger("MOD LIST: ").warning(completeList);
 		
 		
 		
